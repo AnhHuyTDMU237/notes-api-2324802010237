@@ -4,167 +4,1371 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Bài 1 - Hello Cloud</title>
+    <title>Báo cáo thực hành - Hello Cloud</title>
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f9;
+        * {
             margin: 0;
-            padding: 30px;
-            color: #222;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
-        .container {
-            max-width: 1000px;
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #0f172a;
+            --background: #f1f5f9;
+            --white: #ffffff;
+            --text: #334155;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --green: #16a34a;
+            --blue-light: #eff6ff;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        /* HEADER */
+
+        header {
+            background: linear-gradient(120deg, #0f172a, #1e40af, #2563eb);
+            color: white;
+            padding: 65px 20px;
+            text-align: center;
+        }
+
+        header .label {
+            display: inline-block;
+            padding: 7px 18px;
+            border: 1px solid rgba(255,255,255,.4);
+            border-radius: 30px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        header h1 {
+            font-size: 38px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        header p {
+            color: #dbeafe;
+            font-size: 16px;
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .header-info div {
+            background: rgba(255,255,255,.12);
+            padding: 12px 25px;
+            border-radius: 10px;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            background: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 3px 12px rgba(0,0,0,.07);
+        }
+
+        nav .nav-content {
+            max-width: 1150px;
             margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+            padding: 12px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #334155;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 9px 13px;
+            border-radius: 6px;
+        }
+
+        nav a:hover {
+            background: var(--blue-light);
+            color: var(--primary);
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 1100px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .section {
             background: white;
-            padding: 30px;
+            padding: 35px;
+            margin-bottom: 28px;
+            border-radius: 14px;
+            box-shadow: 0 3px 15px rgba(15,23,42,.045);
+        }
+
+        .section-title {
+            color: var(--secondary);
+            font-size: 24px;
+            border-left: 5px solid var(--primary);
+            padding-left: 15px;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            color: var(--primary-dark);
+            margin: 22px 0 10px;
+            font-size: 18px;
+        }
+
+        p {
+            margin-bottom: 13px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 7px;
+        }
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 18px;
+            margin: 25px 0;
+        }
+
+        .card {
+            padding: 23px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
             border-radius: 12px;
         }
 
-        h1, h2 {
-            color: #1456a0;
+        .card .number {
+            font-size: 28px;
+            color: var(--primary);
+            font-weight: bold;
         }
 
-        h1 {
-            text-align: center;
+        .card h3 {
+            margin: 5px 0;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        /* TABLE */
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            min-width: 650px;
         }
 
         th, td {
-            border: 1px solid #ccc;
-            padding: 12px;
+            border: 1px solid var(--border);
+            padding: 13px;
             text-align: left;
+            vertical-align: top;
         }
 
         th {
-            background: #1456a0;
+            background: #1e40af;
             color: white;
         }
 
         tr:nth-child(even) {
-            background: #f2f5fa;
+            background: #f8fafc;
         }
 
-        .note {
-            background: #eaf3ff;
-            padding: 15px;
-            border-left: 4px solid #1456a0;
+        /* INFO BOX */
+
+        .info {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 5px;
         }
+
+        .success {
+            background: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        /* CODE */
+
+        pre {
+            background: #0f172a;
+            color: #bfdbfe;
+            padding: 20px;
+            border-radius: 9px;
+            overflow-x: auto;
+            font-size: 13px;
+            line-height: 1.7;
+            margin: 15px 0;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        /* NIST */
+
+        .nist-item {
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            background: #ffffff;
+        }
+
+        .nist-item h3 {
+            margin-top: 0;
+        }
+
+        .nist-tag {
+            display: inline-block;
+            color: #1d4ed8;
+            background: #dbeafe;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        /* PROCESS */
+
+        .step {
+            display: flex;
+            gap: 20px;
+            margin: 22px 0;
+        }
+
+        .step-number {
+            min-width: 42px;
+            height: 42px;
+            background: var(--primary);
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        /* QUESTIONS */
+
+        .question {
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin: 18px 0;
+        }
+
+        .question h3 {
+            margin-top: 0;
+        }
+
+        /* FOOTER */
 
         footer {
-            margin-top: 30px;
+            background: #0f172a;
+            color: white;
             text-align: center;
-            color: #666;
+            padding: 40px 20px;
+            margin-top: 50px;
         }
+
+        footer p {
+            text-align: center;
+            color: #cbd5e1;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background: #dcfce7;
+            color: #166534;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        @media(max-width: 600px) {
+            header h1 {
+                font-size: 25px;
+            }
+
+            .section {
+                padding: 22px 17px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            nav .nav-content {
+                gap: 0;
+            }
+
+            nav a {
+                font-size: 11px;
+                padding: 7px;
+            }
+
+            .step {
+                gap: 12px;
+            }
+        }
+
     </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- HEADER -->
 
-    <h1>BÀI 1: HELLO CLOUD</h1>
+<header>
 
-    <p><strong>Họ và tên:</strong> [Nhập họ tên]</p>
-    <p><strong>MSSV:</strong> [Nhập MSSV]</p>
-    <p><strong>Môn học:</strong> Điện toán đám mây</p>
-    <p><strong>Nền tảng:</strong> GitHub Codespaces - Node.js - Express</p>
+    <div class="label">BÁO CÁO THỰC HÀNH ĐIỆN TOÁN ĐÁM MÂY</div>
 
-    <h2>1. Bảng so sánh máy cá nhân và Codespace</h2>
+    <h1>LẬP TRÌNH TRÊN MÁY ẢO<br>ĐÁM MÂY ĐẦU TIÊN</h1>
 
-    <table>
-        <tr>
-            <th>Tiêu chí</th>
-            <th>Máy cá nhân</th>
-            <th>Codespace</th>
-        </tr>
+    <p>Xây dựng và triển khai API Hello Cloud bằng GitHub Codespaces</p>
 
-        <tr>
-            <td>Thời gian từ lúc bắt đầu đến khi chạy node -v</td>
-            <td>[Điền số liệu]</td>
-            <td>[Điền số liệu]</td>
-        </tr>
-
-        <tr>
-            <td>Số CPU, RAM (từ API)</td>
-            <td>[Điền số liệu]</td>
-            <td>[Điền số liệu]</td>
-        </tr>
-
-        <tr>
-            <td>Hệ điều hành</td>
-            <td>[Điền số liệu]</td>
-            <td>[Điền số liệu]</td>
-        </tr>
-
-        <tr>
-            <td>Cách truy cập từ thiết bị khác</td>
-            <td>Truy cập qua mạng nội bộ hoặc cấu hình truy cập từ bên ngoài</td>
-            <td>Truy cập qua URL HTTPS của Codespaces khi đặt cổng Public</td>
-        </tr>
-
-        <tr>
-            <td>Chi phí, đo bằng gì</td>
-            <td>Chi phí đầu tư phần cứng, điện năng và bảo trì</td>
-            <td>Core-hours và dung lượng lưu trữ theo chính sách GitHub</td>
-        </tr>
-    </table>
-
-    <h2>2. Đối chiếu 5 đặc tính điện toán đám mây NIST</h2>
-
-    <table>
-        <tr>
-            <th>Đặc tính NIST</th>
-            <th>Thao tác thực tế</th>
-        </tr>
-
-        <tr>
-            <td>On-demand self-service<br>Tự phục vụ theo yêu cầu</td>
-            <td>Tự tạo GitHub Codespace mà không cần quản trị viên cấp phát máy tính.</td>
-        </tr>
-
-        <tr>
-            <td>Broad network access<br>Truy cập mạng rộng</td>
-            <td>Mở API qua URL HTTPS và truy cập từ điện thoại.</td>
-        </tr>
-
-        <tr>
-            <td>Resource pooling<br>Gộp tài nguyên</td>
-            <td>Sử dụng tài nguyên điện toán từ hạ tầng dùng chung của nhà cung cấp đám mây.</td>
-        </tr>
-
-        <tr>
-            <td>Rapid elasticity<br>Co giãn nhanh</td>
-            <td>Có thể tạo hoặc thay đổi cấu hình Codespace theo nhu cầu.</td>
-        </tr>
-
-        <tr>
-            <td>Measured service<br>Dịch vụ đo lường được</td>
-            <td>Theo dõi thời gian sử dụng, Core-hours và dung lượng lưu trữ tại GitHub Billing Usage.</td>
-        </tr>
-    </table>
-
-    <h2>3. Kết quả thực hiện</h2>
-
-    <div class="note">
-        Đã xây dựng API Hello Cloud bằng Node.js và Express.
-        API cung cấp thông tin máy chủ thông qua phương thức GET /.
-        Đã kiểm tra khả năng truy cập API qua Internet bằng thiết bị di động.
-        Đồng thời triển khai trang báo cáo bằng GitHub Pages.
+    <div class="header-info">
+        <div>Node.js & Express</div>
+        <div>GitHub Codespaces</div>
+        <div>GitHub Pages</div>
     </div>
 
-    <footer>
-        Bài thực hành 1 - Lập trình trên máy ảo đám mây đầu tiên
-    </footer>
+</header>
 
-</div>
+<!-- NAVIGATION -->
+
+<nav>
+    <div class="nav-content">
+        <a href="#gioithieu">Giới thiệu</a>
+        <a href="#muctieu">Mục tiêu</a>
+        <a href="#congnghe">Công nghệ</a>
+        <a href="#quytrinh">Quy trình</a>
+        <a href="#api">API</a>
+        <a href="#so-sanh">So sánh</a>
+        <a href="#nist">NIST</a>
+        <a href="#phantich">Phân tích</a>
+        <a href="#cauhoi">Câu hỏi</a>
+        <a href="#ketluan">Kết luận</a>
+    </div>
+</nav>
+
+<main class="container">
+
+    <!-- 1. INTRODUCTION -->
+
+    <section class="section" id="gioithieu">
+
+        <h2 class="section-title">01. Giới thiệu đề tài</h2>
+
+        <p>
+            Điện toán đám mây là một mô hình cung cấp tài nguyên
+            công nghệ thông tin thông qua Internet. Thay vì phải
+            đầu tư và quản lý toàn bộ máy chủ vật lý, người dùng
+            có thể sử dụng tài nguyên tính toán, lưu trữ và môi
+            trường phát triển được cung cấp bởi nhà cung cấp dịch vụ.
+        </p>
+
+        <p>
+            Trong bài thực hành này, sinh viên sử dụng GitHub
+            Codespaces để tạo một môi trường lập trình trực tuyến,
+            khởi tạo dự án Node.js và xây dựng API Hello Cloud.
+            API có khả năng cung cấp thông tin về môi trường
+            thực thi như tên máy chủ, số lượng CPU, dung lượng
+            bộ nhớ, hệ điều hành và thời gian hoạt động.
+        </p>
+
+        <p>
+            Sau khi xây dựng thành công, ứng dụng được truy cập
+            thông qua trình duyệt và thiết bị di động. Sinh viên
+            đồng thời sử dụng GitHub Pages để xuất bản trang báo
+            cáo kết quả thực hành.
+        </p>
+
+        <div class="info">
+            <strong>Ý nghĩa bài thực hành:</strong>
+            Giúp sinh viên trải nghiệm trực tiếp quy trình cấp
+            phát môi trường điện toán đám mây, phát triển ứng dụng,
+            truy cập dịch vụ qua Internet và theo dõi mức sử dụng
+            tài nguyên.
+        </div>
+
+    </section>
+
+    <!-- 2. OBJECTIVES -->
+
+    <section class="section" id="muctieu">
+
+        <h2 class="section-title">02. Mục tiêu thực hiện</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="number">01</div>
+                <h3>Môi trường đám mây</h3>
+                <p>
+                    Tạo và sử dụng môi trường lập trình trực tuyến
+                    thay cho việc cài đặt toàn bộ môi trường trên
+                    máy tính cá nhân.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="number">02</div>
+                <h3>Xây dựng API</h3>
+                <p>
+                    Sử dụng Node.js và Express để xây dựng API
+                    có khả năng trả về dữ liệu JSON.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="number">03</div>
+                <h3>Truy cập Internet</h3>
+                <p>
+                    Kiểm tra khả năng truy cập ứng dụng từ
+                    nhiều thiết bị thông qua URL công khai.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="number">04</div>
+                <h3>Đặc tính NIST</h3>
+                <p>
+                    Nhận diện năm đặc tính cơ bản của điện toán
+                    đám mây thông qua trải nghiệm thực tế.
+                </p>
+            </div>
+
+        </div>
+
+        <h3>Kết quả mong đợi</h3>
+
+        <ul>
+            <li>Tạo thành công một GitHub Codespace.</li>
+            <li>Khởi tạo dự án Node.js và cài đặt Express.</li>
+            <li>Xây dựng API GET / trả về dữ liệu JSON.</li>
+            <li>Truy cập API bằng điện thoại thông qua Internet.</li>
+            <li>Triển khai trang báo cáo bằng GitHub Pages.</li>
+            <li>Phân tích và liên hệ năm đặc tính NIST.</li>
+        </ul>
+
+    </section>
+
+    <!-- 3. TECHNOLOGY -->
+
+    <section class="section" id="congnghe">
+
+        <h2 class="section-title">03. Công nghệ sử dụng</h2>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <tr>
+                    <th>Công nghệ</th>
+                    <th>Vai trò</th>
+                    <th>Mục đích sử dụng</th>
+                </tr>
+
+                <tr>
+                    <td>GitHub</td>
+                    <td>Quản lý mã nguồn</td>
+                    <td>Lưu trữ repository và quản lý phiên bản.</td>
+                </tr>
+
+                <tr>
+                    <td>GitHub Codespaces</td>
+                    <td>Môi trường phát triển đám mây</td>
+                    <td>Cung cấp môi trường lập trình trực tuyến.</td>
+                </tr>
+
+                <tr>
+                    <td>Node.js</td>
+                    <td>Runtime JavaScript</td>
+                    <td>Thực thi mã nguồn JavaScript phía máy chủ.</td>
+                </tr>
+
+                <tr>
+                    <td>Express.js</td>
+                    <td>Framework backend</td>
+                    <td>Xây dựng API và xử lý HTTP request.</td>
+                </tr>
+
+                <tr>
+                    <td>HTML5 / CSS3</td>
+                    <td>Giao diện trang web</td>
+                    <td>Thiết kế trang báo cáo kết quả thực hành.</td>
+                </tr>
+
+                <tr>
+                    <td>GitHub Pages</td>
+                    <td>Hosting trang tĩnh</td>
+                    <td>Xuất bản trang báo cáo lên Internet.</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        <h3>Mô hình hoạt động tổng quan</h3>
+
+        <pre>
++----------------------+
+|      Sinh viên       |
+|    Trình duyệt Web   |
++----------+-----------+
+           |
+           v
++----------------------+
+|    GitHub Platform   |
+|  Repository / Git    |
++----------+-----------+
+           |
+           v
++----------------------+
+|   GitHub Codespaces  |
+|                      |
+|      Node.js         |
+|      Express         |
+|                      |
+|      API GET /       |
++----------+-----------+
+           |
+           v
++----------------------+
+|    HTTP / HTTPS      |
+|   JSON Response      |
++----------+-----------+
+           |
+           v
++----------------------+
+| Máy tính / Điện thoại|
++----------------------+
+        </pre>
+
+        <p>
+            Mô hình trên mô tả luồng cơ bản từ người sử dụng,
+            môi trường phát triển đám mây đến ứng dụng API.
+            Người dùng gửi yêu cầu HTTP đến máy chủ và nhận
+            kết quả phản hồi dưới dạng JSON.
+        </p>
+
+    </section>
+
+    <!-- 4. PROCESS -->
+
+    <section class="section" id="quytrinh">
+
+        <h2 class="section-title">04. Quy trình thực hiện</h2>
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>Tạo repository trên GitHub</h3>
+                <p>
+                    Sử dụng repository template của giảng viên
+                    để tạo repository mới với tên notes-api-MSSV.
+                    Repository được thiết lập ở chế độ Public
+                    để thuận tiện cho việc quản lý và kiểm tra
+                    mã nguồn.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>Khởi chạy GitHub Codespaces</h3>
+                <p>
+                    Tạo một Codespace từ nhánh main của repository.
+                    Hệ thống cung cấp môi trường phát triển
+                    trực tuyến với terminal và trình soạn thảo
+                    mã nguồn tích hợp.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3>Khởi tạo dự án Node.js</h3>
+                <p>
+                    Sử dụng npm init -y để khởi tạo dự án,
+                    cài đặt Express và tạo các thư mục src,
+                    docs nhằm tổ chức mã nguồn và tài liệu.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h3>Xây dựng API Hello Cloud</h3>
+                <p>
+                    Tạo hai tệp app.js và server.js.
+                    Tệp app.js xử lý logic ứng dụng,
+                    còn server.js chịu trách nhiệm khởi động
+                    máy chủ tại cổng 3000.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+                <h3>Kiểm tra khả năng truy cập</h3>
+                <p>
+                    Mở cổng 3000 và chuyển Port Visibility
+                    sang Public để kiểm tra API trên thiết bị
+                    di động. Sau khi hoàn tất, chuyển lại Private.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">6</div>
+            <div class="step-content">
+                <h3>Đo lường và so sánh tài nguyên</h3>
+                <p>
+                    Thu thập thông tin CPU, RAM, hệ điều hành
+                    từ API trên máy cá nhân và Codespace.
+                    Đồng thời kiểm tra mức sử dụng tại
+                    GitHub Billing Usage.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">7</div>
+            <div class="step-content">
+                <h3>Triển khai GitHub Pages</h3>
+                <p>
+                    Xây dựng trang báo cáo HTML trong thư mục
+                    docs, commit mã nguồn và cấu hình GitHub
+                    Pages để xuất bản trang web.
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- 5. API -->
+
+    <section class="section" id="api">
+
+        <h2 class="section-title">05. Xây dựng API Hello Cloud</h2>
+
+        <h3>5.1. Giới thiệu API</h3>
+
+        <p>
+            API Hello Cloud được xây dựng bằng Node.js và
+            Express. API sử dụng phương thức HTTP GET tại
+            đường dẫn gốc "/" để cung cấp thông tin của
+            môi trường đang thực thi ứng dụng.
+        </p>
+
+        <h3>5.2. Các thông tin API cung cấp</h3>
+
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>Trường dữ liệu</th>
+                    <th>Ý nghĩa</th>
+                </tr>
+
+                <tr>
+                    <td>message</td>
+                    <td>Thông điệp chào mừng từ ứng dụng.</td>
+                </tr>
+
+                <tr>
+                    <td>host</td>
+                    <td>Tên máy chủ đang thực thi ứng dụng.</td>
+                </tr>
+
+                <tr>
+                    <td>platform</td>
+                    <td>Thông tin hệ điều hành.</td>
+                </tr>
+
+                <tr>
+                    <td>cpus</td>
+                    <td>Số lượng CPU logic được Node.js nhận diện.</td>
+                </tr>
+
+                <tr>
+                    <td>memoryGB</td>
+                    <td>Tổng bộ nhớ RAM được hệ điều hành báo cáo, đổi sang GB.</td>
+                </tr>
+
+                <tr>
+                    <td>uptimeSec</td>
+                    <td>Thời gian hoạt động của hệ điều hành tính bằng giây.</td>
+                </tr>
+
+                <tr>
+                    <td>time</td>
+                    <td>Thời điểm API tạo phản hồi theo định dạng ISO.</td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>5.3. Phương thức truy cập</h3>
+
+        <div class="info">
+            <strong>HTTP Method:</strong> GET
+            <br>
+            <strong>Endpoint:</strong> /
+            <br>
+            <strong>Port:</strong> 3000
+            <br>
+            <strong>Response:</strong> application/json
+        </div>
+
+        <h3>5.4. Kết quả kiểm thử</h3>
+
+        <p>
+            Sau khi chạy lệnh npm start, máy chủ Express
+            tiếp nhận yêu cầu trên cổng 3000. Khi người dùng
+            truy cập endpoint gốc, ứng dụng trả về một đối
+            tượng JSON chứa thông tin môi trường thực thi.
+        </p>
+
+        <pre>
+{
+  "message": "Xin chào từ đám mây!",
+  "host": "TEN_MAY_CHU_THUC_TE",
+  "platform": "Linux ...",
+  "cpus": "...",
+  "memoryGB": "...",
+  "uptimeSec": "...",
+  "time": "..."
+}
+        </pre>
+
+        <div class="success">
+            <strong>Kết quả:</strong>
+            API được kiểm tra bằng trình duyệt thông qua
+            endpoint GET /. Các trường dữ liệu được trả về
+            dưới dạng JSON.
+        </div>
+
+    </section>
+
+    <!-- 6. COMPARISON -->
+
+    <section class="section" id="so-sanh">
+
+        <h2 class="section-title">06. So sánh máy cá nhân và Codespace</h2>
+
+        <p>
+            Mục đích của việc so sánh là đánh giá sự khác biệt
+            giữa môi trường lập trình truyền thống trên máy
+            tính cá nhân và môi trường phát triển được cung
+            cấp thông qua nền tảng đám mây.
+        </p>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <tr>
+                    <th>Tiêu chí</th>
+                    <th>Máy cá nhân</th>
+                    <th>GitHub Codespace</th>
+                </tr>
+
+                <tr>
+                    <td>Thời gian chạy node -v</td>
+                    <td>[ĐIỀN SỐ LIỆU THỰC TẾ]</td>
+                    <td>[ĐIỀN SỐ LIỆU THỰC TẾ]</td>
+                </tr>
+
+                <tr>
+                    <td>Số lượng CPU</td>
+                    <td>[ĐIỀN KẾT QUẢ API]</td>
+                    <td>[ĐIỀN KẾT QUẢ API]</td>
+                </tr>
+
+                <tr>
+                    <td>Dung lượng RAM</td>
+                    <td>[ĐIỀN KẾT QUẢ API]</td>
+                    <td>[ĐIỀN KẾT QUẢ API]</td>
+                </tr>
+
+                <tr>
+                    <td>Hệ điều hành</td>
+                    <td>[ĐIỀN HỆ ĐIỀU HÀNH]</td>
+                    <td>[ĐIỀN HỆ ĐIỀU HÀNH]</td>
+                </tr>
+
+                <tr>
+                    <td>Truy cập từ thiết bị khác</td>
+                    <td>Thông qua mạng nội bộ hoặc cấu hình truy cập từ xa.</td>
+                    <td>Thông qua URL HTTPS khi cổng được đặt Public.</td>
+                </tr>
+
+                <tr>
+                    <td>Chi phí</td>
+                    <td>Đầu tư phần cứng, điện năng, bảo trì.</td>
+                    <td>Được theo dõi bằng Core-hours và dung lượng lưu trữ.</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        <h3>6.1. Phân tích môi trường máy cá nhân</h3>
+
+        <p>
+            Khi sử dụng máy tính cá nhân, người dùng có quyền
+            chủ động quản lý hệ điều hành, cài đặt Node.js,
+            npm và các thư viện cần thiết. Tài nguyên sử dụng
+            phụ thuộc vào cấu hình phần cứng của máy tính.
+        </p>
+
+        <h3>6.2. Phân tích môi trường Codespace</h3>
+
+        <p>
+            Với GitHub Codespaces, môi trường phát triển được
+            cung cấp trực tuyến. Người dùng có thể truy cập
+            trình soạn thảo và terminal thông qua trình duyệt
+            mà không cần tự thiết lập toàn bộ máy chủ vật lý.
+        </p>
+
+        <h3>6.3. Nhận xét</h3>
+
+        <p>
+            Hai môi trường đều có thể thực thi ứng dụng Node.js.
+            Tuy nhiên, Codespaces có lợi thế về khả năng truy
+            cập từ nhiều thiết bị, đồng bộ môi trường phát triển
+            và quản lý mã nguồn tập trung. Máy cá nhân có lợi
+            thế về quyền kiểm soát phần cứng và khả năng làm
+            việc ngoại tuyến khi đã chuẩn bị đầy đủ môi trường.
+        </p>
+
+    </section>
+
+    <!-- 7. NIST -->
+
+    <section class="section" id="nist">
+
+        <h2 class="section-title">07. Đối chiếu 5 đặc tính điện toán đám mây NIST</h2>
+
+        <p>
+            Theo mô hình điện toán đám mây của NIST,
+            điện toán đám mây có năm đặc tính thiết yếu.
+            Các đặc tính này có thể được nhận diện thông qua
+            quá trình sử dụng GitHub Codespaces.
+        </p>
+
+        <div class="nist-item">
+
+            <span class="nist-tag">ĐẶC TÍNH 01</span>
+
+            <h3>On-demand Self-service - Tự phục vụ theo yêu cầu</h3>
+
+            <p>
+                Người dùng có thể tự tạo một Codespace thông
+                qua giao diện GitHub mà không cần yêu cầu
+                quản trị viên cấp phát máy chủ thủ công.
+            </p>
+
+            <strong>Thao tác thực tế:</strong>
+
+            <p>
+                Chọn Code → Codespaces → Create codespace on main.
+            </p>
+
+            <strong>Ý nghĩa:</strong>
+
+            <p>
+                Tài nguyên điện toán có thể được yêu cầu và
+                cấp phát theo nhu cầu sử dụng của người dùng.
+            </p>
+
+        </div>
+
+        <div class="nist-item">
+
+            <span class="nist-tag">ĐẶC TÍNH 02</span>
+
+            <h3>Broad Network Access - Truy cập mạng rộng</h3>
+
+            <p>
+                Các dịch vụ đám mây có thể được truy cập
+                thông qua mạng bằng những thiết bị khác nhau.
+                Trong bài thực hành, API được truy cập từ
+                máy tính và điện thoại thông qua URL HTTPS.
+            </p>
+
+            <strong>Thao tác thực tế:</strong>
+
+            <p>
+                Chuyển Port Visibility của cổng 3000 sang
+                Public và mở URL trên điện thoại.
+            </p>
+
+            <strong>Ý nghĩa:</strong>
+
+            <p>
+                Người dùng có thể sử dụng dịch vụ từ nhiều
+                thiết bị có kết nối Internet và được cấp
+                quyền truy cập phù hợp.
+            </p>
+
+        </div>
+
+        <div class="nist-item">
+
+            <span class="nist-tag">ĐẶC TÍNH 03</span>
+
+            <h3>Resource Pooling - Gộp tài nguyên</h3>
+
+            <p>
+                Nhà cung cấp sử dụng hạ tầng tài nguyên
+                điện toán dùng chung để phục vụ nhiều người
+                dùng. Tài nguyên được phân bổ linh hoạt
+                theo nhu cầu của các môi trường.
+            </p>
+
+            <strong>Thao tác thực tế:</strong>
+
+            <p>
+                Tạo Codespace và sử dụng CPU, RAM được
+                cung cấp bởi nền tảng GitHub Codespaces.
+            </p>
+
+            <strong>Ý nghĩa:</strong>
+
+            <p>
+                Người dùng không cần trực tiếp sở hữu máy
+                chủ vật lý riêng để chạy môi trường phát triển.
+                Việc quan sát hostname không đủ để xác định
+                máy chủ vật lý cụ thể.
+            </p>
+
+        </div>
+
+        <div class="nist-item">
+
+            <span class="nist-tag">ĐẶC TÍNH 04</span>
+
+            <h3>Rapid Elasticity - Co giãn nhanh</h3>
+
+            <p>
+                Tài nguyên điện toán có khả năng được cấp phát,
+                thay đổi hoặc giải phóng nhanh theo nhu cầu.
+                Người dùng có thể tạo Codespace với cấu hình
+                phù hợp và thay đổi loại máy khi được hỗ trợ.
+            </p>
+
+            <strong>Thao tác thực tế:</strong>
+
+            <p>
+                Tạo, dừng và quản lý Codespace. Việc thay đổi
+                cấu hình máy có thể thực hiện thông qua
+                lựa chọn machine type được GitHub hỗ trợ.
+            </p>
+
+            <strong>Ý nghĩa:</strong>
+
+            <p>
+                Khả năng sử dụng tài nguyên linh hoạt giúp
+                hạn chế việc phải duy trì máy chủ riêng
+                liên tục khi không có nhu cầu.
+            </p>
+
+        </div>
+
+        <div class="nist-item">
+
+            <span class="nist-tag">ĐẶC TÍNH 05</span>
+
+            <h3>Measured Service - Dịch vụ đo lường được</h3>
+
+            <p>
+                Việc sử dụng tài nguyên được theo dõi và
+                đo lường thông qua những chỉ số phù hợp.
+                Người dùng có thể kiểm tra mức sử dụng
+                Codespaces trong trang Billing Usage.
+            </p>
+
+            <strong>Thao tác thực tế:</strong>
+
+            <p>
+                Truy cập GitHub Settings → Billing → Usage
+                để kiểm tra mức sử dụng Core-hours và
+                dung lượng lưu trữ.
+            </p>
+
+            <strong>Ý nghĩa:</strong>
+
+            <p>
+                Việc đo lường giúp người dùng theo dõi
+                mức tiêu thụ tài nguyên và quản lý chi phí
+                dịch vụ đám mây.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- 8. ANALYSIS -->
+
+    <section class="section" id="phantich">
+
+        <h2 class="section-title">08. Đánh giá và phân tích kết quả</h2>
+
+        <h3>8.1. Những kết quả đạt được</h3>
+
+        <ul>
+            <li>
+                Khởi tạo thành công môi trường lập trình
+                trực tuyến trên GitHub Codespaces.
+            </li>
+
+            <li>
+                Cài đặt và sử dụng Node.js cùng Express
+                để phát triển ứng dụng phía máy chủ.
+            </li>
+
+            <li>
+                Tách biệt logic ứng dụng và thành phần
+                khởi động máy chủ.
+            </li>
+
+            <li>
+                Xây dựng API cung cấp thông tin môi trường
+                thực thi thông qua định dạng JSON.
+            </li>
+
+            <li>
+                Kiểm tra khả năng truy cập ứng dụng
+                bằng thiết bị di động.
+            </li>
+
+            <li>
+                Sử dụng GitHub Pages để xuất bản
+                nội dung báo cáo.
+            </li>
+
+        </ul>
+
+        <h3>8.2. Ưu điểm của môi trường điện toán đám mây</h3>
+
+        <p>
+            Môi trường lập trình trên đám mây giúp giảm
+            sự phụ thuộc vào cấu hình máy tính cá nhân.
+            Người dùng có thể truy cập môi trường làm việc
+            từ nhiều thiết bị, đồng thời sử dụng repository
+            để lưu trữ và đồng bộ mã nguồn.
+        </p>
+
+        <p>
+            Ngoài ra, việc sử dụng dịch vụ trực tuyến giúp
+            quá trình thiết lập môi trường phát triển
+            thuận tiện hơn, đặc biệt trong trường hợp
+            sinh viên cần làm việc trên nhiều máy tính
+            khác nhau.
+        </p>
+
+        <h3>8.3. Hạn chế và rủi ro</h3>
+
+        <ul>
+            <li>
+                Cần có kết nối Internet ổn định để truy cập
+                và sử dụng môi trường đám mây.
+            </li>
+
+            <li>
+                Có thể phát sinh chi phí khi vượt hạn mức
+                sử dụng miễn phí.
+            </li>
+
+            <li>
+                Phụ thuộc vào chính sách và khả năng
+                cung cấp dịch vụ của nhà cung cấp.
+            </li>
+
+            <li>
+                Cấu hình cổng Public không phù hợp có thể
+                khiến dịch vụ bị truy cập ngoài dự kiến.
+            </li>
+
+            <li>
+                Người dùng cần quản lý quyền truy cập,
+                mã nguồn và thông tin nhạy cảm một cách
+                cẩn thận.
+            </li>
+        </ul>
+
+        <h3>8.4. So sánh với phương pháp truyền thống</h3>
+
+        <p>
+            Trong phương pháp truyền thống, sinh viên
+            thường phải cài đặt môi trường lập trình
+            trên từng máy tính trong phòng thực hành.
+            Điều này có thể dẫn đến sự khác biệt về
+            phiên bản phần mềm và cấu hình giữa các máy.
+        </p>
+
+        <p>
+            Với Codespaces, môi trường phát triển được
+            cung cấp trực tuyến và gắn với repository.
+            Nhờ đó, việc tiếp cận môi trường lập trình
+            trở nên thuận tiện và dễ đồng bộ hơn.
+        </p>
+
+    </section>
+
+    <!-- 9. QUESTIONS -->
+
+    <section class="section" id="cauhoi">
+
+        <h2 class="section-title">09. Câu hỏi phản biện</h2>
+
+        <div class="question">
+
+            <h3>Câu 1. Trường host có thay đổi sau khi Stop và Start Codespace không?</h3>
+
+            <p>
+                Trường host có thể thay đổi hoặc giữ nguyên
+                sau khi Codespace được dừng và khởi động lại.
+                Nếu hostname thay đổi, điều đó cho thấy môi
+                trường có thể được cấp phát lại với một
+                định danh máy chủ khác. Nếu hostname giữ
+                nguyên thì không thể kết luận máy chủ vật lý
+                không thay đổi, vì hostname không nhất thiết
+                xác định máy chủ vật lý.
+            </p>
+
+        </div>
+
+        <div class="question">
+
+            <h3>Câu 2. GitHub Codespaces thuộc IaaS, PaaS hay SaaS?</h3>
+
+            <p>
+                GitHub Codespaces gần với mô hình PaaS
+                xét theo trải nghiệm sử dụng. GitHub cung cấp
+                hạ tầng và môi trường phát triển được quản lý,
+                trong khi người dùng phát triển mã nguồn,
+                cài đặt các gói phần mềm và quản lý ứng dụng.
+                Người dùng không phải trực tiếp quản lý
+                máy chủ vật lý và hạ tầng bên dưới.
+            </p>
+
+        </div>
+
+        <div class="question">
+
+            <h3>Câu 3. Hai hạn chế truyền thống được khắc phục và một rủi ro mới?</h3>
+
+            <p>
+                Hai hạn chế được khắc phục là việc phải
+                cài đặt môi trường lập trình riêng trên
+                từng máy tính và khó đồng bộ cấu hình
+                phần mềm giữa các máy trong phòng lab.
+                Codespaces cung cấp môi trường trực tuyến
+                và giúp quản lý mã nguồn tập trung.
+            </p>
+
+            <p>
+                Rủi ro mới là phụ thuộc vào kết nối Internet
+                và nhà cung cấp dịch vụ đám mây. Ngoài ra,
+                việc cấu hình quyền truy cập không phù hợp
+                có thể gây lộ dịch vụ hoặc dữ liệu.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- 10. CONCLUSION -->
+
+    <section class="section" id="ketluan">
+
+        <h2 class="section-title">10. Kết luận</h2>
+
+        <p>
+            Qua bài thực hành, sinh viên đã tiếp cận
+            quy trình xây dựng và triển khai một ứng dụng
+            cơ bản trên môi trường điện toán đám mây
+            thông qua GitHub Codespaces.
+        </p>
+
+        <p>
+            Việc sử dụng Node.js và Express giúp xây dựng
+            API Hello Cloud có khả năng trả về các thông
+            tin của môi trường thực thi. Đồng thời,
+            việc truy cập API từ thiết bị di động cho thấy
+            khả năng cung cấp dịch vụ thông qua mạng.
+        </p>
+
+        <p>
+            Bài thực hành cũng giúp liên hệ năm đặc tính
+            thiết yếu của NIST với các thao tác thực tế,
+            bao gồm tự phục vụ theo yêu cầu, truy cập mạng
+            rộng, gộp tài nguyên, co giãn nhanh và
+            dịch vụ đo lường được.
+        </p>
+
+        <p>
+            Thông qua GitHub Pages, kết quả thực hiện
+            được xuất bản thành một trang báo cáo trực tuyến.
+            Đây là nền tảng để tiếp tục phát triển và tái sử
+            dụng mã nguồn trong các bài thực hành tiếp theo.
+        </p>
+
+        <div class="success">
+            <strong>Tổng kết:</strong>
+            Hoàn thành các nội dung xây dựng API,
+            kiểm tra môi trường đám mây, đối chiếu
+            đặc tính NIST và xuất bản báo cáo trực tuyến.
+        </div>
+
+    </section>
+
+    <!-- 11. REFERENCES -->
+
+    <section class="section" id="tailieu">
+
+        <h2 class="section-title">11. Tài liệu tham khảo</h2>
+
+        <ol>
+
+            <li>
+                NIST - The NIST Definition of Cloud Computing,
+                Special Publication 800-145.
+                <br>
+                <a href="https://doi.org/10.6028/NIST.SP.800-145"
+                   target="_blank">
+                    https://doi.org/10.6028/NIST.SP.800-145
+                </a>
+            </li>
+
+            <li>
+                GitHub Docs - GitHub Codespaces.
+                <br>
+                <a href="https://docs.github.com/en/codespaces"
+                   target="_blank">
+                    https://docs.github.com/en/codespaces
+                </a>
+            </li>
+
+            <li>
+                Node.js Documentation.
+                <br>
+                <a href="https://nodejs.org/docs/latest/api/"
+                   target="_blank">
+                    https://nodejs.org/docs/latest/api/
+                </a>
+            </li>
+
+            <li>
+                Express.js Documentation.
+                <br>
+                <a href="https://expressjs.com/"
+                   target="_blank">
+                    https://expressjs.com/
+                </a>
+            </li>
+
+            <li>
+                GitHub Pages Documentation.
+                <br>
+                <a href="https://docs.github.com/en/pages"
+                   target="_blank">
+                    https://docs.github.com/en/pages
+                </a>
+            </li>
+
+        </ol>
+
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h2>BÀI THỰC HÀNH 01 - HELLO CLOUD</h2>
+
+    <p>
+        Môn học: Điện toán đám mây
+    </p>
+
+    <p>
+        Công nghệ: GitHub Codespaces | Node.js | Express | GitHub Pages
+    </p>
+
+    <p>
+        © 2026 - Báo cáo thực hành điện toán đám mây
+    </p>
+
+</footer>
 
 </body>
 </html>
