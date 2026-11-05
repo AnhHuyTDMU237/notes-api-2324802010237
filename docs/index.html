@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bài 1 - Hello Cloud</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 30px;
+            color: #222;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        h1, h2 {
+            color: #1456a0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #1456a0;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f2f5fa;
+        }
+
+        .note {
+            background: #eaf3ff;
+            padding: 15px;
+            border-left: 4px solid #1456a0;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>BÀI 1: HELLO CLOUD</h1>
+
+    <p><strong>Họ và tên:</strong> [Nhập họ tên]</p>
+    <p><strong>MSSV:</strong> [Nhập MSSV]</p>
+    <p><strong>Môn học:</strong> Điện toán đám mây</p>
+    <p><strong>Nền tảng:</strong> GitHub Codespaces - Node.js - Express</p>
+
+    <h2>1. Bảng so sánh máy cá nhân và Codespace</h2>
+
+    <table>
+        <tr>
+            <th>Tiêu chí</th>
+            <th>Máy cá nhân</th>
+            <th>Codespace</th>
+        </tr>
+
+        <tr>
+            <td>Thời gian từ lúc bắt đầu đến khi chạy node -v</td>
+            <td>[Điền số liệu]</td>
+            <td>[Điền số liệu]</td>
+        </tr>
+
+        <tr>
+            <td>Số CPU, RAM (từ API)</td>
+            <td>[Điền số liệu]</td>
+            <td>[Điền số liệu]</td>
+        </tr>
+
+        <tr>
+            <td>Hệ điều hành</td>
+            <td>[Điền số liệu]</td>
+            <td>[Điền số liệu]</td>
+        </tr>
+
+        <tr>
+            <td>Cách truy cập từ thiết bị khác</td>
+            <td>Truy cập qua mạng nội bộ hoặc cấu hình truy cập từ bên ngoài</td>
+            <td>Truy cập qua URL HTTPS của Codespaces khi đặt cổng Public</td>
+        </tr>
+
+        <tr>
+            <td>Chi phí, đo bằng gì</td>
+            <td>Chi phí đầu tư phần cứng, điện năng và bảo trì</td>
+            <td>Core-hours và dung lượng lưu trữ theo chính sách GitHub</td>
+        </tr>
+    </table>
+
+    <h2>2. Đối chiếu 5 đặc tính điện toán đám mây NIST</h2>
+
+    <table>
+        <tr>
+            <th>Đặc tính NIST</th>
+            <th>Thao tác thực tế</th>
+        </tr>
+
+        <tr>
+            <td>On-demand self-service<br>Tự phục vụ theo yêu cầu</td>
+            <td>Tự tạo GitHub Codespace mà không cần quản trị viên cấp phát máy tính.</td>
+        </tr>
+
+        <tr>
+            <td>Broad network access<br>Truy cập mạng rộng</td>
+            <td>Mở API qua URL HTTPS và truy cập từ điện thoại.</td>
+        </tr>
+
+        <tr>
+            <td>Resource pooling<br>Gộp tài nguyên</td>
+            <td>Sử dụng tài nguyên điện toán từ hạ tầng dùng chung của nhà cung cấp đám mây.</td>
+        </tr>
+
+        <tr>
+            <td>Rapid elasticity<br>Co giãn nhanh</td>
+            <td>Có thể tạo hoặc thay đổi cấu hình Codespace theo nhu cầu.</td>
+        </tr>
+
+        <tr>
+            <td>Measured service<br>Dịch vụ đo lường được</td>
+            <td>Theo dõi thời gian sử dụng, Core-hours và dung lượng lưu trữ tại GitHub Billing Usage.</td>
+        </tr>
+    </table>
+
+    <h2>3. Kết quả thực hiện</h2>
+
+    <div class="note">
+        Đã xây dựng API Hello Cloud bằng Node.js và Express.
+        API cung cấp thông tin máy chủ thông qua phương thức GET /.
+        Đã kiểm tra khả năng truy cập API qua Internet bằng thiết bị di động.
+        Đồng thời triển khai trang báo cáo bằng GitHub Pages.
+    </div>
+
+    <footer>
+        Bài thực hành 1 - Lập trình trên máy ảo đám mây đầu tiên
+    </footer>
+
+</div>
+
+</body>
+</html>
